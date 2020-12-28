@@ -10,7 +10,8 @@ let searchLocation = {
   desc:"",
   feels:"",
   humid:"",
-  precip:""
+  precip:"",
+  vis:""
 };
 let userLocation ={
   latitude: "",
@@ -22,7 +23,8 @@ let userLocation ={
   desc: "",
   feels:"",
   humid:"",
-  precip:""
+  precip:"",
+  vis:""
 };
 
 function checkUrl(url){
@@ -44,7 +46,7 @@ function checkUrl(url){
   };
 }
 
-function setWeatherDisplay(inputUrl,location,region,country,temperature,description,feelslike,humidity,precipitation){
+function setWeatherDisplay(inputUrl,location,region,country,temperature,description,feelslike,humidity,precipitation,visibility){
   if(inputUrl == "urlLoc"){
     // could put all this into object and replace obj instead:
     searchLocation.loc = location;
@@ -55,28 +57,35 @@ function setWeatherDisplay(inputUrl,location,region,country,temperature,descript
     searchLocation.feels = feelslike;
     searchLocation.humid = humidity;
     searchLocation.precip = precipitation;
+    searchLocation.vis = visibility;
 
     $(".location").text(searchLocation.loc+", "+searchLocation.reg);
     $(".country").text(searchLocation.coun);
     $(".temperature").text(searchLocation.temp+"°"+units.toUpperCase());
     $(".description").text(searchLocation.desc);
     $(".feelslike").text("Feels like: "+searchLocation.feels+"°"+units.toUpperCase());
-    $(".humidity").text("Humidity: "+searchLocation.humid);
-    $(".precipitation").text("Precipitation: "+searchLocation.precip);
+    $(".humidity").text(searchLocation.humid);
+    $(".precipitation").text(searchLocation.precip);
+    $(".visibility").text(searchLocation.vis);
   }else{// "urlCoords"
     userLocation.loc = location;
+    userLocation.reg = region;
+    userLocation.coun = country;
     userLocation.temp = temperature;
     userLocation.desc = description;
     userLocation.feels = feelslike;
     userLocation.humid = humidity;
     userLocation.precip = precipitation;
+    userLocation.vis = visibility;
 
-    $(".location").text(userLocation.loc);
+    $(".location").text(userLocation.loc+", "+userLocation.reg);
+    $(".country").text(userLocation.coun);
     $(".temperature").text(userLocation.temp+"°"+units.toUpperCase());
     $(".description").text(userLocation.desc);
     $(".feelslike").text("Feels like: "+userLocation.feels+"°"+units.toUpperCase());
-    $(".humidity").text("Humidity: "+userLocation.humid);
-    $(".precipitation").text("Precipitation: "+userLocation.precip);
+    $(".humidity").text(userLocation.humid);
+    $(".precipitation").text(userLocation.precip);
+    $(".visibility").text(userLocation.vis);
   }
 }
 
@@ -99,8 +108,9 @@ async function getWeatherData(url) {
       let feels = data.current.feelslike;
       let humid = data.current.humidity;
       let precip = data.current.precip;
+      let vis = data.current.visibility;
       //could pass an object instead of this
-      setWeatherDisplay(url,loc,reg,coun,temp,desc,feels,humid,precip);  // display that data
+      setWeatherDisplay(url,loc,reg,coun,temp,desc,feels,humid,precip,vis);  // display that data
     }
 }
 // On submit button click (form submit), location is set to user input and global variables are set to new values:
@@ -134,10 +144,12 @@ function setUserCoords(pos) {
 $("input[id=location-toggle]").change(function() {
   if ($(this).is(':checked')) { // if toggled
     $("#search-text").val("");
+    $("label.loc-toggle").addClass("translate-x");
     getUserLocation();
   } else { // if not toggled
     getWeatherData("urlLoc"); // switch weather display back to previous search/ current location stored in loc
     $("#search-text").val("");
+    $("label.loc-toggle").removeClass("translate-x");
   }
 });
 

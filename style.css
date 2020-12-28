@@ -8,32 +8,120 @@
 body{
   font-family: 'Inconsolata', monospace;
   font-weight: lighter;
+  background-color: #FFF8F0;
+  color:#334870;
 }
 .container{
-  padding: 45px 10vw;
+  background-color: #96C5F7;
+  margin: 30px 10vw;
+  padding-bottom: 20px;
+}
+.border{
+  border-radius: 30px;
 }
 /*HEADER CONTAINER*/
 .header{
   position: relative;
   display:flex;
   justify-content: space-between;
-  align-items: flex-end;
-  background: lightblue;
-  margin-bottom: 20px;
+  align-items:flex-start;
   padding: 20px 30px;
 }
 .name .location{
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 30px;
 }
-/*toggle switch*/
-.toggle-box{
+.name{
+  position: relative;
+}
+.country{
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+/*both toggles*/
+.toggle-check-box{
   position:relative;
   display: flex;
   width: 80px;
   height: 30px;
+  display: inline-block;
+}
+.toggle-check-box input{
+  display:none;
 }
 label{
   position: relative;
+}
+.toggle-bgd{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.toggle-bgd:after{
+  position:absolute;
+  content: "";
+  width: 38px;
+  height: 26px;
+  border-radius:30px;
+  background: #fff;
+  top: 2px;
+  left: 3px;
+  transition:all 0.3s ease;
+}
+input:checked + .toggle-bgd:after{
+  transform: translateX(37px);
+}
+label.translate-x{
+  transform: translateX(37px);
+  transition:all 0.3s ease;
+}
+label.toggle-check-box{
+    transition:all 0.3s ease;
+}
+/*Location toggle: */
+.location-bgd{
+  background: grey;
+}
+.arrow-icon{
+  position: relative;
+  margin-left: 11px;
+  top:8px;
+  font-size: 13px;
+}
+#location-toggle:checked + .toggle-bgd{
+  background:#52AA8A;
+}
+#form{
+  background-color: #FFF8F0;
+  padding-right: 25px;
+}
+input[type=text] {
+  border: none;
+  height: 98px;
+  width: 400px;
+  padding-left: 20px;
+  font-family: inherit;
+  font-size: 27px;
+  background-color: #FFF8F0;
+}
+input[type=text]:focus {
+  outline:0;
+}
+#submit-btn{
+  background-color: #FFF8F0;
+  padding: 0px;
+  border: none;
+  font-size: 30px;
+  color:#334870;
+}
+/*Units toggle: */
+.label-text{
+  margin-left: 10px;
+  position: relative;
+  top:6px;
+  font-weight: bold;
 }
 label #c{
   position:absolute;
@@ -43,49 +131,19 @@ label #f{
   position:absolute;
   left: 4px;
 }
-.toggle-box input{
-  display:none;
+.units-bgd{
+  background:#FFD4D4;
 }
-.toggle-bgd{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: lavender;
-  border-radius: 20px;
-}
-
-.toggle-bgd:after{
-  position:absolute;
-  content: "";
-  width: 38px;
-  height: 28px;
-  border-radius: 40%;
-  background: #fff;
-  top: 1px;
-  left: 1px;
-  transition:all 0.3s ease;
-}
-
-/*When checkbox is clicked, do something to the element that comes
-immediately after input element --> the */
-input:checked + .toggle-bgd{
-  background:lawngreen;
-}
-input:checked + .toggle-bgd:after{
-  transform: translateX(40px);
-}
-.label-text{
-  margin-left: 10px;
-  position: relative;
-  top:5px;
+#units-toggle:checked + .toggle-bgd{
+  background:#D0C4FD;
 }
 /*WEATHER DISPLAY*/
 .weather-display{
   background: lightblue;
   display:grid;
   grid-template-columns: 2fr 1.7fr;
+  background-color: #FFF8F0;
+  margin: 0 20px;
 }
 /*Description Container*/
 .desc-container{
@@ -114,7 +172,7 @@ input:checked + .toggle-bgd:after{
   margin-top: 150px;
 }
 .feelslike{
-  margin-bottom: 125px;
+  margin-bottom: 110px;
   font-size: 20px;
 }
 /*Inner details container*/
@@ -129,5 +187,5 @@ input:checked + .toggle-bgd:after{
 }
 .details-container .detail{
   font-size: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }

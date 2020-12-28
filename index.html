@@ -9,54 +9,58 @@
       </head>
 
       <body>
-          <div class="container">
-          <div class="header">
-
+        <div class="container border">
+          <div class="header border">
               <div class="name">
-                <h1 class="location" id="location">City, Country</h1>
-                <div class="toggle-box">
+
+                <h1 class="location" id="location"></h1>
+                <h2 class="country">Country</h2>
+
+                <div class="toggle-check-box">
                   <input type="checkbox" name="checkbox" id="location-toggle">
-                  <div class="toggle-bgd"></div>
-                  <label class="toggle-box" for="location-toggle" name="location-toggle"><p class="label-text">your location</p></label>
+                  <div class="toggle-bgd location-bgd border"></div>
+                  <label class="toggle-check-box loc-toggle" for="location-toggle" name="location-toggle">
+                    <p class="arrow-icon" id="f"><i class="fas fa-location-arrow"></i></p>
+                  </label>
                 </div> <!--user location toggle -->
+                
               </div>
 
-              <form id="form">
-                <input type="text" id="search-text" value="" placeholder="Enter Location">
-                <input type="submit" value="submit">
+              <form class="border" id="form">
+                <input class="border" type="text" id="search-text" value="" placeholder="Search location">
+                <button type="submit" id="submit-btn">
+                  <i class="fas fa-search btn"></i>
+                </button>
               </form> <!--location form-->
-
-
-
           </div> <!--controls container -->
 
-          <div class="weather-display">
+          <div class="weather-display border">
 
             <div class="desc-container">
-              <p class="description" id="description">CLOUDY</p>
+              <p class="description" id="description">Cloudy</p>
             </div>
 
             <div class="info-container">
 
-              <div class="toggle-box" id="toggle-box-unit">
+              <div class="toggle-check-box" id="toggle-box-unit">
                 <input type="checkbox" name="checkbox" id="units-toggle">
-                <div class="toggle-bgd"></div>
-                <label class="toggle-box" for="units-toggle" name="units-toggle">
+                <div class="toggle-bgd units-bgd border"></div>
+                <label class="toggle-check-box" for="units-toggle" name="units-toggle">
                   <p class="label-text" id="f">F°</p>
                   <p class="label-text" id="c">C°</p>
                 </label>
               </div> <!--units toggle -->
 
               <h2 class="temperature" id="temperature">76F</h2>
-              <p class="feelslike" id="feelslike">FEELS LIKE 56F</p>
+              <p class="feelslike" id="feelslike"></p>
 
               <div class="details-container">
-                <p class="details-label">VISIBILITY</p>
-                <p class="details-label">HUMIDITY</p>
-                <p class="details-label">PRECIPITATION</p>
-                <p class="detail" id="visibility">34</p>
-                <p class="detail" id="humidity"> 4</p>
-                <p class="detail" id="precipitation"> 45</p>
+                <p class="details-label">Visibility</p>
+                <p class="details-label">Humidity</p>
+                <p class="details-label">Precipitation</p>
+                <p class="detail visibility" id="visibility"></p>
+                <p class="detail humidity" id="humidity"></p>
+                <p class="detail precipitation" id="precipitation"></p>
               </div>
             </div>
 
@@ -66,9 +70,9 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
       </script> <!--jQuery import -->
-      <!--JS import
+
       <script src="scripts.js">
-      </script> --><!--JS import -->
+      </script>
 
     </body>
 </html>
