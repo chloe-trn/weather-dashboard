@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://kit.fontawesome.com/fd1c611bcf.js" crossorigin="anonymous"></script>
+        <title>Weather App</title>
+      </head>
+
+      <body>
+          <div class="header">
+              <h1>Weather App</h1>
+              
+              <form onsubmit="getLocation()" id="form">
+                <input type="text" id="search-text" value="" placeholder="Enter Location">
+                <input type="submit" value="submit">
+              </form> <!--location form-->
+              
+              <div class="location-label">
+                <input type="checkbox" name="checkbox" id="toggle">
+                <div class="toggle-bgd"></div>
+                <label class="location-label" for="toggle" name="location-toggle"><p class="label-text">Change to your location</p></label>
+              </div> <!--user location toggle -->
+
+          </div> <!--controls container -->
+
+          <div class="weather-info">
+            <h2 class="location" id="location"></h2>
+            <p class="temperature" id="temperature"></p>
+            <p class="description" id="description"></p>
+          </div> <!-- weather display container -->
+
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+      </script> <!--jQuery import -->
+      <script src="scripts.js">          
+      </script> <!--JS import -->
+    </body>
+</html>
