@@ -2,15 +2,15 @@
     display:flex;
 }
 /*TOGGLE SWITCH*/
-.location-label{
+.label{
   position:relative;
   display: block;
-  width: 60px; 
-  height: 30px; 
+  width: 60px;
+  height: 30px;
   margin-bottom: 15px;
 }
 
-.location-label input{
+.label input{
   display:none;
 }
 .toggle-bgd{
@@ -26,8 +26,8 @@
 .toggle-bgd:after{
   position:absolute;
   content: "";
-  width: 28px; 
-  height: 28px; 
+  width: 28px;
+  height: 28px;
   border-radius: 100%;
   background: #fff;
   top: 1px;

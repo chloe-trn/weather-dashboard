@@ -10,17 +10,24 @@
 
       <body>
           <div class="header">
+
               <h1>Weather App</h1>
-              
-              <form onsubmit="getLocation()" id="form">
+
+              <form id="form">
                 <input type="text" id="search-text" value="" placeholder="Enter Location">
                 <input type="submit" value="submit">
               </form> <!--location form-->
-              
-              <div class="location-label">
-                <input type="checkbox" name="checkbox" id="toggle">
+
+              <div class="label">
+                <input type="checkbox" name="checkbox" id="location-toggle">
                 <div class="toggle-bgd"></div>
-                <label class="location-label" for="toggle" name="location-toggle"><p class="label-text">Change to your location</p></label>
+                <label class="label" for="location-toggle" name="location-toggle"><p class="label-text">Change to your location</p></label>
+              </div> <!--user location toggle -->
+
+              <div class="label">
+                <input type="checkbox" name="checkbox" id="temp-toggle">
+                <div class="toggle-bgd"></div>
+                <label class="label" for="temp-toggle" name="temp-toggle"><p class="label-text">Switch Units</p></label>
               </div> <!--user location toggle -->
 
           </div> <!--controls container -->
@@ -31,10 +38,12 @@
             <p class="description" id="description"></p>
           </div> <!-- weather display container -->
 
-      
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
       </script> <!--jQuery import -->
-      <script src="scripts.js">          
+
+      <script src="scripts.js">
       </script> <!--JS import -->
+
     </body>
 </html>
