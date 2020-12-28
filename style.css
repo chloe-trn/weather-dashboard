@@ -1,16 +1,49 @@
-.header{
-    display:flex;
-}
-/*TOGGLE SWITCH*/
-.label{
-  position:relative;
-  display: block;
-  width: 60px;
-  height: 30px;
-  margin-bottom: 15px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
 
-.label input{
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Inconsolata', monospace;
+  font-weight: lighter;
+}
+.container{
+  padding: 45px 10vw;
+}
+/*HEADER CONTAINER*/
+.header{
+  position: relative;
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: lightblue;
+  margin-bottom: 20px;
+  padding: 20px 30px;
+}
+.name .location{
+  margin-bottom: 20px;
+}
+/*toggle switch*/
+.toggle-box{
+  position:relative;
+  display: flex;
+  width: 80px;
+  height: 30px;
+}
+label{
+  position: relative;
+}
+label #c{
+  position:absolute;
+  left: 45px;
+}
+label #f{
+  position:absolute;
+  left: 4px;
+}
+.toggle-box input{
   display:none;
 }
 .toggle-bgd{
@@ -26,9 +59,9 @@
 .toggle-bgd:after{
   position:absolute;
   content: "";
-  width: 28px;
+  width: 38px;
   height: 28px;
-  border-radius: 100%;
+  border-radius: 40%;
   background: #fff;
   top: 1px;
   left: 1px;
@@ -41,10 +74,60 @@ input:checked + .toggle-bgd{
   background:lawngreen;
 }
 input:checked + .toggle-bgd:after{
-  transform: translateX(30px);
+  transform: translateX(40px);
 }
 .label-text{
-  margin-left: 70px;
+  margin-left: 10px;
   position: relative;
-  bottom: 15px;
+  top:5px;
+}
+/*WEATHER DISPLAY*/
+.weather-display{
+  background: lightblue;
+  display:grid;
+  grid-template-columns: 2fr 1.7fr;
+}
+/*Description Container*/
+.desc-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.description{
+  margin-top: 70px;
+  font-size: 35px;
+}
+/*Information Container*/
+.info-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#toggle-box-unit{
+  margin-top: 30px;
+  position: absolute;
+  right: 30px;
+}
+.temperature{
+  font-size: 130px;
+  margin-top: 150px;
+}
+.feelslike{
+  margin-bottom: 125px;
+  font-size: 20px;
+}
+/*Inner details container*/
+.details-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+.details-container .details-label{
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.details-container .detail{
+  font-size: 30px;
+  margin-bottom: 30px;
 }

@@ -1,19 +1,29 @@
 // global variables:
 const APP_ID = "2e3b7f8f991531cb9a876edb9e0c1a22";
+let units ="f"; // farenheit units is default
 // search location and user location current states:
 let searchLocation = {
   loc: "New York",
+  reg:"",
+  coun:"",
   temp:"",
-  desc:""
+  desc:"",
+  feels:"",
+  humid:"",
+  precip:""
 };
 let userLocation ={
   latitude: "",
   longitude: "",
   loc:"",
+  reg:"",
+  coun:"",
   temp:"",
-  desc: ""
+  desc: "",
+  feels:"",
+  humid:"",
+  precip:""
 };
-let units ="f"; // farenheit units is default
 
 function checkUrl(url){
   if(url == "urlLoc"){
@@ -34,21 +44,39 @@ function checkUrl(url){
   };
 }
 
-function setWeatherDisplay(inputUrl,location,temperature,description){
+function setWeatherDisplay(inputUrl,location,region,country,temperature,description,feelslike,humidity,precipitation){
   if(inputUrl == "urlLoc"){
+    // could put all this into object and replace obj instead:
     searchLocation.loc = location;
+    searchLocation.reg = region;
+    searchLocation.coun = country;
     searchLocation.temp = temperature;
     searchLocation.desc = description;
-    $(".location").text(searchLocation.loc);
+    searchLocation.feels = feelslike;
+    searchLocation.humid = humidity;
+    searchLocation.precip = precipitation;
+
+    $(".location").text(searchLocation.loc+", "+searchLocation.reg);
+    $(".country").text(searchLocation.coun);
     $(".temperature").text(searchLocation.temp+"°"+units.toUpperCase());
     $(".description").text(searchLocation.desc);
+    $(".feelslike").text("Feels like: "+searchLocation.feels+"°"+units.toUpperCase());
+    $(".humidity").text("Humidity: "+searchLocation.humid);
+    $(".precipitation").text("Precipitation: "+searchLocation.precip);
   }else{// "urlCoords"
     userLocation.loc = location;
     userLocation.temp = temperature;
     userLocation.desc = description;
+    userLocation.feels = feelslike;
+    userLocation.humid = humidity;
+    userLocation.precip = precipitation;
+
     $(".location").text(userLocation.loc);
     $(".temperature").text(userLocation.temp+"°"+units.toUpperCase());
     $(".description").text(userLocation.desc);
+    $(".feelslike").text("Feels like: "+userLocation.feels+"°"+units.toUpperCase());
+    $(".humidity").text("Humidity: "+userLocation.humid);
+    $(".precipitation").text("Precipitation: "+userLocation.precip);
   }
 }
 
@@ -64,9 +92,15 @@ async function getWeatherData(url) {
     } else{
       // succesful location search:
       let loc = data.location.name;   // pull necessary data
+      let reg = data.location.region;
+      let coun = data.location.country;
       let temp = data.current.temperature;
       let desc = data.current.weather_descriptions[0];
-      setWeatherDisplay(url,loc,temp,desc);  // display that data
+      let feels = data.current.feelslike;
+      let humid = data.current.humidity;
+      let precip = data.current.precip;
+      //could pass an object instead of this
+      setWeatherDisplay(url,loc,reg,coun,temp,desc,feels,humid,precip);  // display that data
     }
 }
 // On submit button click (form submit), location is set to user input and global variables are set to new values:
