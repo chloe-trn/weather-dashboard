@@ -1,5 +1,5 @@
 // global variables:
-const APP_ID = "2e3b7f8f991531cb9a876edb9e0c1a22";
+//const APP_ID = "2e3b7f8f991531cb9a876edb9e0c1a22";
 let units = {temp:"f",vis:"mph",precip:"in"};
 // search location and user location current states:
 let searchLocation = {
@@ -74,8 +74,8 @@ function setWeatherDisplay(inputUrl,newLocObj){
 async function getWeatherData(url) {
     let myUrl = checkUrl(url); // check what type of data we are pulling from API
     /*TODO - Handling of unfulfilled promise from API */
-    const response = await fetch(myUrl); // fetch it
-    const data = await response.json(); // make it json format
+    //const response = await fetch(myUrl); // fetch it
+    //const data = await response.json(); // make it json format
     if (data.hasOwnProperty("success") && data["success"] == false){
       // make popup instead of alert
       alert("Location entered is not supported, please enter another location. Ex: 'London' or 'London, United Kingdom'. Accepts name, country, or region.");
@@ -155,6 +155,100 @@ $("input[id=units-toggle]").change(function() {
     }
   }
 });
+
+let currentAnimations = [".cloud"];
+let weatherDescriptions = {
+  cloudy:[".cloud"],
+  sunny:[".sun"],
+  mist:[".mist"],
+  fog:[".mist"],
+  "partly cloudy": [".cloud",".sun"],
+  raining: [".cloud",".rain"],
+  showers: [".cloud",".rain"],
+  lightning:[".cloud",".lightning"],
+  thunderstorm:[".cloud",".lightning",".rain"]
+};
+
+
+// animation function
+function getAnimation(weatherDesc){
+
+  // GET RID OF THIS:
+  $(".description").text(weatherDesc);
+
+  let newAnimation = [];
+  // turn off previous animation;
+  for (let i = 0; i < currentAnimations.length; i++) {
+    console.log(currentAnimations[i]);
+    $(currentAnimations[i]).css("display", "none");
+  }
+
+  // check through each KEY in myList, if it matches something , append the VALUES into the newAnimation array
+  if (weatherDescriptions.hasOwnProperty(weatherDesc)){
+    console.log(weatherDesc+" "+weatherDescriptions[weatherDesc]);
+    newAnimation = weatherDescriptions[weatherDesc];
+    currentAnimations = newAnimation;
+    console.log("newAnimation: "+newAnimation);
+  } else{
+    // do nothing , new animation is an empty string, input weatherDesc did not match anything in myList
+    //TODO ********************************************************************************************8
+  }
+
+  if (newAnimation.length == 0){
+
+    console.log("Weather Description is not in myList");
+
+  }else if (newAnimation.length == 1) { //if array size ==1, just do a normal display ; cloudy, sunny , mist/fog
+
+    if(weatherDesc =="cloudy"){
+      console.log("newAnimation[0]: "+newAnimation[0]);
+      $(newAnimation[0]).removeClass("cloud-position");
+      $(newAnimation[0]).addClass("cloud-animation");
+      $(newAnimation[0]).css("display", "block"); // display cloud
+    }else if (weatherDesc =="sunny") { // sunny ; elseif
+      $(newAnimation[0]).removeClass("sun-position");
+      $(newAnimation[0]).addClass("sun-animation");
+      $(newAnimation[0]).css("display", "block"); // display cloud
+    } else{ // else; mist
+      $(newAnimation[0]).css("display", "block"); // display mist
+    }
+
+  }else if (newAnimation.length == 2) { // array.length == 2, display it differently ; partly cloudy; rainy; lightning
+    if(weatherDesc =="partly cloudy"){
+      console.log("newAnimation[0]: "+newAnimation[0]);
+      console.log("newAnimation[1]: "+newAnimation[1]);
+      $(newAnimation[0]).addClass("cloud-position");
+      $(newAnimation[0]).addClass("cloud-animation");
+      $(newAnimation[0]).css("display", "block");
+      $(newAnimation[1]).addClass("sun-position");
+      $(newAnimation[1]).addClass("sun-animation");
+      $(newAnimation[1]).css("display", "block");
+    }else if (weatherDesc =="raining"||weatherDesc =="showers"){
+      console.log("raining");
+      $(newAnimation[0]).removeClass("cloud-position");
+      $(newAnimation[0]).css("display", "block"); //display cloud
+      $(newAnimation[1]).css("display", "block"); // display rain
+    }else{ //lightning
+      console.log("lightning");
+      $(newAnimation[0]).removeClass("cloud-animation");
+      $(newAnimation[0]).removeClass("cloud-position");
+      $(newAnimation[0]).css("display", "block"); //display cloud
+      $(newAnimation[1]).css("display", "block"); //display lightning
+    }
+
+  }else{ // array.length === 3 or more; thunderstorm
+    if(weatherDesc =="thunderstorm"){
+      $(newAnimation[0]).removeClass("cloud-animation");
+      $(newAnimation[0]).removeClass("cloud-position");
+      $(newAnimation[0]).css("display", "block"); //display cloud
+      $(newAnimation[1]).css("display", "block"); //display lightning
+      $(newAnimation[2]).css("display", "block"); //display rain
+    }
+  }
+
+}
+
 $( document ).ready(function() {
-    getWeatherData("urlLoc");
+    //getWeatherData("urlLoc");
+
 });
