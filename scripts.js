@@ -1,9 +1,9 @@
 // global variables:
 const APP_ID = "2e3b7f8f991531cb9a876edb9e0c1a22";
-let units ="f"; // farenheit units is default
+let units = {temp:"f",vis:"mph",precip:"in"};
 // search location and user location current states:
 let searchLocation = {
-  loc: "New York",
+  loc: "Chicago",
   reg:"",
   coun:"",
   temp:"",
@@ -26,66 +26,47 @@ let userLocation ={
   precip:"",
   vis:""
 };
-
+/*
 function checkUrl(url){
   if(url == "urlLoc"){
     let location = searchLocation.loc;
-    if(units == "c"){
+    if(units.temp == "c"){
       return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${location}`;
     }else{
-      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${location}&units=${units}`;
+      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${location}&units=${units.temp}`;
     }
   } else{ // "urlCoords"
     let lat = userLocation.latitude;
     let long = userLocation.longitude;
-    if(units == "c"){
+    if(units.temp == "c"){
       return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${lat},${long}`;
     }else{
-      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${lat},${long}&units=${units}`;
+      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${lat},${long}&units=${units.temp}`;
     }
   };
-}
+}*/
 
-function setWeatherDisplay(inputUrl,location,region,country,temperature,description,feelslike,humidity,precipitation,visibility){
+function setWeatherDisplay(inputUrl,newLocObj){
   if(inputUrl == "urlLoc"){
-    // could put all this into object and replace obj instead:
-    searchLocation.loc = location;
-    searchLocation.reg = region;
-    searchLocation.coun = country;
-    searchLocation.temp = temperature;
-    searchLocation.desc = description;
-    searchLocation.feels = feelslike;
-    searchLocation.humid = humidity;
-    searchLocation.precip = precipitation;
-    searchLocation.vis = visibility;
-
+    searchLocation = newLocObj;
     $(".location").text(searchLocation.loc+", "+searchLocation.reg);
     $(".country").text(searchLocation.coun);
-    $(".temperature").text(searchLocation.temp+"°"+units.toUpperCase());
+    $(".temperature").text(searchLocation.temp+"°"+units.temp.toUpperCase());
     $(".description").text(searchLocation.desc);
-    $(".feelslike").text("Feels like: "+searchLocation.feels+"°"+units.toUpperCase());
-    $(".humidity").text(searchLocation.humid);
-    $(".precipitation").text(searchLocation.precip);
-    $(".visibility").text(searchLocation.vis);
+    $(".feelslike").text("Feels like: "+searchLocation.feels+"°"+units.temp.toUpperCase());
+    $(".humidity").text(searchLocation.humid+" %");
+    $(".precipitation").text(searchLocation.precip+" "+units.precip);
+    $(".visibility").text(searchLocation.vis+" "+units.vis);
   }else{// "urlCoords"
-    userLocation.loc = location;
-    userLocation.reg = region;
-    userLocation.coun = country;
-    userLocation.temp = temperature;
-    userLocation.desc = description;
-    userLocation.feels = feelslike;
-    userLocation.humid = humidity;
-    userLocation.precip = precipitation;
-    userLocation.vis = visibility;
-
+    userLocation = newLocObj;
     $(".location").text(userLocation.loc+", "+userLocation.reg);
     $(".country").text(userLocation.coun);
-    $(".temperature").text(userLocation.temp+"°"+units.toUpperCase());
+    $(".temperature").text(userLocation.temp+"°"+units.temp.toUpperCase());
     $(".description").text(userLocation.desc);
-    $(".feelslike").text("Feels like: "+userLocation.feels+"°"+units.toUpperCase());
-    $(".humidity").text(userLocation.humid);
-    $(".precipitation").text(userLocation.precip);
-    $(".visibility").text(userLocation.vis);
+    $(".feelslike").text("Feels like: "+userLocation.feels+"°"+units.temp.toUpperCase());
+    $(".humidity").text(userLocation.humid+" %");
+    $(".precipitation").text(userLocation.precip+" "+units.precip);
+    $(".visibility").text(userLocation.vis+" "+units.vis);
   }
 }
 
@@ -98,24 +79,25 @@ async function getWeatherData(url) {
     if (data.hasOwnProperty("success") && data["success"] == false){
       // make popup instead of alert
       alert("Location entered is not supported, please enter another location. Ex: 'London' or 'London, United Kingdom'. Accepts name, country, or region.");
-    } else{
+    } else {
       // succesful location search:
-      let loc = data.location.name;   // pull necessary data
-      let reg = data.location.region;
-      let coun = data.location.country;
-      let temp = data.current.temperature;
-      let desc = data.current.weather_descriptions[0];
-      let feels = data.current.feelslike;
-      let humid = data.current.humidity;
-      let precip = data.current.precip;
-      let vis = data.current.visibility;
-      //could pass an object instead of this
-      setWeatherDisplay(url,loc,reg,coun,temp,desc,feels,humid,precip,vis);  // display that data
+      let newData = {
+        loc:data.location.name,   // pull necessary data
+        reg:data.location.region,
+        coun:data.location.country,
+        temp:data.current.temperature,
+        desc:data.current.weather_descriptions[0],
+        feels:data.current.feelslike,
+        humid:data.current.humidity,
+        precip:data.current.precip,
+        vis:data.current.visibility
+      };
+      setWeatherDisplay(url,newData);  // display that data
     }
 }
 // On submit button click (form submit), location is set to user input and global variables are set to new values:
 $("#form").submit(function(){
-  searchLocation.loc = document.getElementById("search-text").value;
+  searchLocation.loc = document.getElementById("search-text").value; // store input location
   getWeatherData("urlLoc"); // get and display input location
   $("#search-text").val(""); // clear search
   if($("#location-toggle").is(":checked")){
@@ -153,18 +135,19 @@ $("input[id=location-toggle]").change(function() {
   }
 });
 
-
 // listens for change in units toggle:
 $("input[id=units-toggle]").change(function() {
   if ($(this).is(':checked')) { // if toggled
-    units ="c";
+    let newUnits = {temp:"c",vis:"kph",precip:"mm"}; // change units to Celsius
+    units=newUnits;
     if($("#location-toggle").is(":checked")){ // check location toggle
       getWeatherData("urlCoords");
     } else{
       getWeatherData("urlLoc");
     }
   } else { // if not toggled
-    units ="f";
+    let newUnits = {temp:"f",vis:"mph",precip:"in"}; //change units to Farenheit
+    units=newUnits;
     if($("#location-toggle").is(":checked")){ // check location toggle
       getWeatherData("urlCoords");
     } else{
@@ -172,5 +155,6 @@ $("input[id=units-toggle]").change(function() {
     }
   }
 });
-
-getWeatherData("urlLoc");
+$( document ).ready(function() {
+    getWeatherData("urlLoc");
+});
