@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 *{
   padding: 0;
@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 body{
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Varela Round', sans-serif;
   font-weight: lighter;
   background-color: #FFF8F0;
   color:#334870;
@@ -169,7 +169,7 @@ label #f{
   margin-top: 150px;
 }
 .feelslike{
-  margin-bottom: 110px;
+  margin-bottom: 60px;
   font-size: 20px;
 }
 /*Inner details container*/
@@ -217,7 +217,7 @@ label #f{
 }
 .cloud-animation{
   animation-name: cloud-move;
-  animation-duration: 6s;
+  animation-duration: 10s;
   animation-timing-function:linear;
   animation-iteration-count: infinite;
 }
@@ -258,7 +258,7 @@ label #f{
   z-index: 0;
 }
 .sun-animation{
-  animation: sun-spin 15s linear infinite;
+  animation: sun-spin 30s linear infinite;
 }
 .sun-position{ /*Puts sun in upper left of animation container*/
   position:absolute;
