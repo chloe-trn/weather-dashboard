@@ -15,6 +15,7 @@
 
                 <h1 class="location" id="location"></h1>
 
+                <div class="loc-toggle-container">
                 <div class="toggle-check-box">
                   <input type="checkbox" name="checkbox" id="location-toggle">
                   <div class="toggle-bgd location-bgd border"></div>
@@ -22,6 +23,7 @@
                     <p class="arrow-icon" id="f"><i class="fas fa-location-arrow"></i></p>
                   </label>
                 </div> <!--user location toggle -->
+              </div>
 
               </div>
 
@@ -58,44 +60,33 @@
                 </div> -->
 
                 <!--- >svg testing  -->
-                <!--Day-->
+                <!--day 01d-->
                 <img class="weather-animation day" src="animations/day.svg" alt="day animation">
-                <!--Night-->
+                <!--night ;01n-->
                 <img class="weather-animation night" src="animations/night.svg" alt="night animation">
-                <!--Cloudy-->
+                <!--cloudy-day-3 ;02d-->
+                <img class="weather-animation cloudy-day" src="animations/cloudy-day-3.svg" alt="cloudy day animation">
+                <!--cloudy-night-3 ;02n-->
+                <img class="weather-animation cloudy-night" src="animations/cloudy-night-3.svg" alt="cloudy night animation">
+                <!--cloudy ;03d;03n;04d;04n-->
                 <img class="weather-animation cloudy" src="animations/cloudy.svg" alt="cloudy animation">
-                <!--Partly cloudy - Day -->
-                <img class="weather-animation partly-cloudy-day" src="animations/cloudy-day-2.svg" alt="partly cloudy in daytime animation">
-                <!--Partly cloudy with rain - Day-->
-                <img class="weather-animation partly-cloudy-rain-day" src="animations/rainy-3.svg" alt="partly cloudy with rain in daytime animation">
-                <!--Partly cloudy - Night -->
-                <img class="weather-animation partly-cloudy-night" src="animations/cloudy-night-3.svg" alt="partly cloudy in nighttime animation">
-                <!--Thunder-->
+                <!--rainy-6 ;09d;09n;10n-->
+                <img class="weather-animation rainy" src="animations/rainy-6.svg" alt="rainy animation">
+                <!--rainy-3 ;10d-->
+                <img class="weather-animation rainy-day" src="animations/rainy-3.svg" alt="rainy in daytime animation">
+                <!--thunder ;11d;11n-->
                 <img class="weather-animation thunder" src="animations/thunder.svg" alt="thunder animation">
-                <!--Hail-->
-                <img class="weather-animation hail" src="animations/rainy-7.svg" alt="hail animation">
-                <!--Light rain-->
-                <img class="weather-animation light-rain" src="animations/rainy-4.svg" alt="light rain animation">
-                <!--Medium rain-->
-                <img class="weather-animation medium-rain" src="animations/rainy-5.svg" alt="medium rain animation">
-                <!--Heavy rain-->
-                <img class="weather-animation heavy-rain" src="animations/rainy-6.svg" alt="heavy rain animation">
-                <!--Light snow - Day-->
-                <img class="weather-animation light-snow-day" src="animations/snowy-2.svg" alt="light snow in daytime animation">
-                <!--Medium snow - Day-->
-                <img class="weather-animation medium-snow-day" src="animations/snowy-3.svg" alt="medium snow in daytime animation">
-                <!--Light snow-->
-                <img class="weather-animation light-snow" src="animations/snowy-4.svg" alt="light snow animation">
-                <!--Medium snow-->
-                <img class="weather-animation medium-snow" src="animations/snowy-5.svg" alt="medium snow animation">
-                <!--Light snow-->
-                <img class="weather-animation heavy-snow" src="animations/snowy-6.svg" alt="heavy snow animation">
+                <!--snowy-5 ;13d;13n-->
+                <img class="weather-animation snow" src="animations/snowy-5.svg" alt="snow animation">
                 <!--Mist or Fog-->
                 <div class="mist">
                   <div class="layer" id="l1"></div>
                   <div class="layer" id="l2"></div>
                   <div class="layer" id="l3"></div>
                   <div class="layer" id="l4"></div>
+                </div>
+                <div class="else-case">
+                  <p>Animation is currently not supported for this weather description ( ; - ; )</p>
                 </div>
 
               </div>
@@ -121,11 +112,12 @@
 
               <div class="details-container">
                 <p class="details-label">Wind</p>
-                <p class="details-label">Humidity</p>
                 <p class="details-label">Pressure</p>
+                <p class="details-label">Humidity</p>
                 <p class="detail windspeed" id="windspeed"></p>
+                <p class="detail pressure" id="pressure"></p>
                 <p class="detail humidity" id="humidity"></p>
-                <p class="detail pressure" id="Pressure"></p>
+
               </div>
             </div>
 
