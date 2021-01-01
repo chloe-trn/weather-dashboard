@@ -34,10 +34,6 @@ body{
 .name{
   position: relative;
 }
-.country{
-  font-size: 17px;
-  margin-bottom: 10px;
-}
 /*both toggles*/
 .toggle-check-box{
   position:relative;
@@ -177,35 +173,105 @@ label #f{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
+  position: relative;
 }
 .details-container .details-label{
   font-size: 20px;
   margin-bottom: 20px;
 }
-.details-container .detail{
+.detail{
   font-size: 30px;
   margin-bottom: 40px;
 }
 /*Description Container*/
 .desc-container{
-  display: flex;
+  position: relative;
+  display:flex;
   flex-direction: column;
-  align-items: center;
 }
 .description{
-  margin-top: 55px;
-  font-size: 35px;
+  font-size: 45px;
+  position: absolute;
+  bottom: 40px;
+  left:50%;
+  transform: translateX(-50%);
 }
 /*ANIMATIONS*/
-.animation-container{
-  position:relative;
-  width: 100%;
-  height: 100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.weather-animation{
+  position: absolute;
+  bottom: 300px;
+  left:50%;
+  transform:translateX(-50%) scale(6.5) ;
+  display: none;
 }
+.cloudy,.day,.partly-cloudy-day{
+  bottom: 250px;
+}
+.day{
+  left:45%;
+  transform:scale(9.5);
+}
+.medium-rain,.medium-snow{
+  bottom: 275px;
+}
+/*MIST*/
+.mist{
+  display:none;
+  padding-top: 140px;
+}
+.layer{
+  position:relative;
+  background-color:#5d7191;
+  margin-bottom:45px;
+  width: 150px;
+  height: 6px;
+  border-radius:40%;
+}
+#l1{
+  left: 60%;
+  transform:translateX(-50%);
+  animation: mist-move 7s ease-in-out 0s infinite;
+}
+#l2{
+  left: 30%;
+  transform:translateX(-50%);
+  animation: mist-move 10s linear infinite;
+}
+#l3{
+  left: 70%;
+  transform:translateX(-50%);
+  animation: mist-move 8s ease-in-out infinite;
+}
+#l4{
+  left: 50%;
+  transform:translateX(-50%);
+  animation: mist-move 6s linear infinite;
+}
+/*
+#l1{
+  left: 0px;
+  animation: mist-move 7s ease-in-out 0s infinite;
+}
+#l2{
+  right:0px;
+  animation: mist-move 10s linear infinite;
+}
+#l3{
+  left:0px;
+  animation: mist-move 8s ease-in-out infinite;
+}
+#l4{
+  animation: mist-move 6s linear infinite;
+}*/
+@keyframes mist-move{ /*Mist Animation*/
+  0%{}
+  50%{ transform:translate(-10px);}
+  100%{}
+}
+
+
 /*Cloud:*/
+/*
 .cloud{
   display: none;
   background-color:white;
@@ -244,11 +310,14 @@ label #f{
   background: white;
   border-radius: 50%;
 }
-@keyframes cloud-move{ /*Cloud animation*/
+@keyframes cloud-move{
   25%{transform:translate(40px);}
   75%{transform:translate(-40px);}
 }
+*/
+
 /*Sun: */
+/*
 .sun{
   display: none;
   background-color:#f2c807;
@@ -260,7 +329,7 @@ label #f{
 .sun-animation{
   animation: sun-spin 30s linear infinite;
 }
-.sun-position{ /*Puts sun in upper left of animation container*/
+.sun-position{
   position:absolute;
   top: 125px;
   left: 365px;
@@ -269,7 +338,7 @@ label #f{
   height: 100px;
   width: 100px;
 }
-.sun li{ /*Sun rays styling*/
+.sun li{
   background-color:#f2c807;
   position:absolute;
   top: 50%;
@@ -280,7 +349,7 @@ label #f{
   border-radius: 50%;
   list-style:none;
 }
-.sun li:nth-child(1){ /*Positioning of sun rays*/
+.sun li:nth-child(1){
   transform: translate(-50%, -50%) rotate(0deg);
 }
 .sun li:nth-child(2){
@@ -292,44 +361,18 @@ label #f{
 .sun li:nth-child(4){
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-@keyframes sun-spin{ /*Sun animation*/
+@keyframes sun-spin{
   0%{ transform: rotate(0deg);}
   50%{ transform: rotate(180deg);}
   100%{ transform: rotate(360deg);}
 }
-/*MIST*/
-.mist{
-  display:none;
-}
-.layer{ /*Mist Layers styling*/
-  position:relative;
-  background-color:#5d7191;
-  margin-bottom:55px;
-  width: 180px;
-  height: 6px;
-  border-radius:40%;
-}
-#l1{ /*Individual layers animation specs and positioning*/
-  left: 10px;
-  animation: mist-move 7s ease-in-out 0s infinite;
-}
-#l2{
-  right:120px;
-  animation: mist-move 10s linear infinite;
-}
-#l3{
-  left:100px;
-  animation: mist-move 8s ease-in-out infinite;
-}
-#l4{
-  animation: mist-move 6s linear infinite;
-}
-@keyframes mist-move{ /*Mist Animation*/
-  0%{}
-  50%{ transform:translate(50px);}
-  100%{}
-}
+*/
+
+
+
+
 /*RAIN*/
+/*
 .rain{
   display: none;
   position:relative;
@@ -353,7 +396,7 @@ label #f{
   background-color:#4c7ecf;
   animation: rain-drop 1.3s linear infinite;
 }
-@keyframes rain-drop{ /*Rain drops animation*/
+@keyframes rain-drop{
   0%{
     opacity: 1;
   }
@@ -366,7 +409,10 @@ label #f{
     transform: translateY(80px) rotateX(90deg);
   }
 }
+*/
+
 /*Lightning:*/
+ /*
 .lightning{
   display:none;
   position:relative;
@@ -385,6 +431,7 @@ label #f{
   transform: rotate(20deg);
   animation: b1 2s ease-in infinite alternate;
 }
+
 #b2{
   right:140px;
   top: 60px;
@@ -413,3 +460,4 @@ label #f{
   100%{
   }
 }
+*/

@@ -1,72 +1,66 @@
 // global variables:
-//const APP_ID = "2e3b7f8f991531cb9a876edb9e0c1a22";
-let units = {temp:"f",vis:"mph",precip:"in"};
+const APP_ID = "85e4a70f692bf0d169dde7822353cf50";
+let units = {temp:"f",wind:"mph",pres:"in"};
 // search location and user location current states:
 let searchLocation = {
-  loc: "Chicago",
-  reg:"",
+  loc: "Honolulu",
   coun:"",
   temp:"",
   desc:"",
   feels:"",
   humid:"",
-  precip:"",
-  vis:""
+  pres:"",
+  wind:""
 };
 let userLocation ={
-  latitude: "",
-  longitude: "",
   loc:"",
-  reg:"",
   coun:"",
   temp:"",
   desc: "",
   feels:"",
   humid:"",
-  precip:"",
-  vis:""
+  pres:"",
+  wind:""
 };
-/*
+
 function checkUrl(url){
   if(url == "urlLoc"){
     let location = searchLocation.loc;
     if(units.temp == "c"){
-      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${location}`;
-    }else{
-      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${location}&units=${units.temp}`;
+      return `http://api.openweathermap.org/data/2.5/find?q=${location}&appid=${APP_ID}&units=metric`;
+    }else{ //F
+      return `http://api.openweathermap.org/data/2.5/find?q=${location}&appid=${APP_ID}&units=imperial`;
     }
   } else{ // "urlCoords"
-    let lat = userLocation.latitude;
-    let long = userLocation.longitude;
+    let lat = $(".latitude").val();
+    let long = $(".longitude").val();
     if(units.temp == "c"){
-      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${lat},${long}`;
-    }else{
-      return `http://api.weatherstack.com/current?access_key=${APP_ID}&query=${lat},${long}&units=${units.temp}`;
+      return `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${APP_ID}&units=metric`;
+    }else{ //F
+      return `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${APP_ID}&units=imperial`;
     }
   };
-}*/
+}
 
 function setWeatherDisplay(inputUrl,newLocObj){
   if(inputUrl == "urlLoc"){
     searchLocation = newLocObj;
-    $(".location").text(searchLocation.loc+", "+searchLocation.reg);
-    $(".country").text(searchLocation.coun);
+    $(".location").text(searchLocation.loc+", "+searchLocation.coun);
     $(".temperature").text(searchLocation.temp+"°"+units.temp.toUpperCase());
     $(".description").text(searchLocation.desc);
     $(".feelslike").text("Feels like: "+searchLocation.feels+"°"+units.temp.toUpperCase());
     $(".humidity").text(searchLocation.humid+" %");
-    $(".precipitation").text(searchLocation.precip+" "+units.precip);
-    $(".visibility").text(searchLocation.vis+" "+units.vis);
+    $(".pressure").text(searchLocation.pres+" "+units.pres);
+    $(".windspeed").text(searchLocation.wind+" "+units.wind);
   }else{// "urlCoords"
     userLocation = newLocObj;
-    $(".location").text(userLocation.loc+", "+userLocation.reg);
-    $(".country").text(userLocation.coun);
+    $(".location").text(userLocation.loc+", "+userLocation.coun);
     $(".temperature").text(userLocation.temp+"°"+units.temp.toUpperCase());
     $(".description").text(userLocation.desc);
     $(".feelslike").text("Feels like: "+userLocation.feels+"°"+units.temp.toUpperCase());
     $(".humidity").text(userLocation.humid+" %");
-    $(".precipitation").text(userLocation.precip+" "+units.precip);
-    $(".visibility").text(userLocation.vis+" "+units.vis);
+    $(".pressure").text(userLocation.pres+" "+units.pres);
+    $(".windspeed").text(userLocation.wind+" "+units.wind);
   }
 }
 
@@ -74,26 +68,49 @@ function setWeatherDisplay(inputUrl,newLocObj){
 async function getWeatherData(url) {
     let myUrl = checkUrl(url); // check what type of data we are pulling from API
     /*TODO - Handling of unfulfilled promise from API */
-    //const response = await fetch(myUrl); // fetch it
-    //const data = await response.json(); // make it json format
-    if (data.hasOwnProperty("success") && data["success"] == false){
-      // make popup instead of alert
-      alert("Location entered is not supported, please enter another location. Ex: 'London' or 'London, United Kingdom'. Accepts name, country, or region.");
-    } else {
-      // succesful location search:
-      let newData = {
-        loc:data.location.name,   // pull necessary data
-        reg:data.location.region,
-        coun:data.location.country,
-        temp:data.current.temperature,
-        desc:data.current.weather_descriptions[0],
-        feels:data.current.feelslike,
-        humid:data.current.humidity,
-        precip:data.current.precip,
-        vis:data.current.visibility
-      };
-      setWeatherDisplay(url,newData);  // display that data
+    const response = await fetch(myUrl); // fetch it
+    console.log(response);
+    const data = await response.json(); // make it json format
+    console.log(data);
+
+    if(url == "urlLoc"){
+      if (data.count <= 0 ){
+        // make popup instead of alert
+        alert("City entered is not supported, please enter another city. Ex: 'London' or 'Seoul'. Results are best with city name submitted not country name.");
+      }else {
+        //succesful location search:
+        let newData = {
+          loc:data.list[0].name,   // pull necessary data
+          coun:data.list[0].sys.country,
+          temp:Math.round(data.list[0].main.temp),
+          desc:data.list[0].weather[0].main,
+          feels:Math.round(data.list[0].main.feels_like),
+          humid:data.list[0].main.humidity,
+          pres:data.list[0].main.pressure,
+          wind:Math.round(data.list[0].wind.speed)
+        };
+        setWeatherDisplay(url,newData);  // display that data
+      }
+    }else{ // urlCoords
+      if(data.cod === "400"){
+        alert("Error. There is something wrong with the browser's geolocation functionality.");
+      }else {
+        //successful geolocation search:
+        let newData = {
+          loc:data.name,   // pull necessary data
+          coun:data.sys.country,
+          temp:Math.round(data.main.temp),
+          desc:data.weather[0].main,
+          feels:Math.round(data.main.feels_like),
+          humid:data.main.humidity,
+          pres:data.main.pressure,
+          wind:Math.round(data.wind.speed)
+        };
+        setWeatherDisplay(url,newData);  // display that data
+      }
     }
+
+
 }
 // On submit button click (form submit), location is set to user input and global variables are set to new values:
 $("#form").submit(function(){
@@ -105,21 +122,24 @@ $("#form").submit(function(){
   }
   return false; // prevents page refresh on form submit
 });
-// checks if user has geolocation enabled:
-function getUserLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(setUserCoords);
-  } else {
-    alert("Geolocation is not enabled or supported in your browser. Please enable geolocation in browser settings or exit this alert.");
-    $("#location-toggle").prop( "checked", false );  // un-toggle
-  }
+
+// Geolocation functions:
+if (!navigator.geolocation)
+{
+    alert("Geolocation not available on your browser. Please exit alert or enable geolocation in your browser settings.");
 }
-// callback function runs if user geolocation is enabled:
-function setUserCoords(pos) {
-  // sets user's coordinates(lattitude, longitude):
-  userLocation.latitude = pos.coords.latitude;
-  userLocation.longitude = pos.coords.longitude;
-  getWeatherData("urlCoords"); // set global variables based on user's coordinates
+function success(position)
+{
+    $(".latitude").val(position.coords.latitude);
+    $(".longitude").val(position.coords.longitude);
+    getWeatherData("urlCoords"); // set global variables based on user's coordinates
+}
+function failure()
+{
+  alert("Geolocation not available on your browser. Please exit alert or enable geolocation in your browser settings.");
+}
+async function getUserLocation(){
+  navigator.geolocation.getCurrentPosition(success,failure);
 }
 
 // listens for change in toggle checkbox for userlocation:
@@ -127,7 +147,13 @@ $("input[id=location-toggle]").change(function() {
   if ($(this).is(':checked')) { // if toggled
     $("#search-text").val("");
     $("label.loc-toggle").addClass("translate-x");
-    getUserLocation();
+    if ($(".latitude").val() == ""){
+      console.log("let is undgwar");
+      getUserLocation();
+    }else{
+      console.log("not the first time");
+      getWeatherData("urlCoords");
+    }
   } else { // if not toggled
     getWeatherData("urlLoc"); // switch weather display back to previous search/ current location stored in loc
     $("#search-text").val("");
@@ -138,7 +164,7 @@ $("input[id=location-toggle]").change(function() {
 // listens for change in units toggle:
 $("input[id=units-toggle]").change(function() {
   if ($(this).is(':checked')) { // if toggled
-    let newUnits = {temp:"c",vis:"kph",precip:"mm"}; // change units to Celsius
+    let newUnits = {temp:"c",wind:"m/s",pres:"mm"}; // change units to Celsius
     units=newUnits;
     if($("#location-toggle").is(":checked")){ // check location toggle
       getWeatherData("urlCoords");
@@ -146,7 +172,7 @@ $("input[id=units-toggle]").change(function() {
       getWeatherData("urlLoc");
     }
   } else { // if not toggled
-    let newUnits = {temp:"f",vis:"mph",precip:"in"}; //change units to Farenheit
+    let newUnits = {temp:"f",wind:"mph",pres:"in"}; //change units to Farenheit
     units=newUnits;
     if($("#location-toggle").is(":checked")){ // check location toggle
       getWeatherData("urlCoords");
@@ -156,17 +182,20 @@ $("input[id=units-toggle]").change(function() {
   }
 });
 
-let currentAnimations = [".cloud"];
+let currentAnimation = ".cloud";
 let weatherDescriptions = {
-  cloudy:[".cloud"],
-  sunny:[".sun"],
-  mist:[".mist"],
-  fog:[".mist"],
-  "partly cloudy": [".cloud",".sun"],
-  raining: [".cloud",".rain"],
-  showers: [".cloud",".rain"],
-  lightning:[".cloud",".lightning"],
-  thunderstorm:[".cloud",".lightning",".rain"]
+  cloudy:".cloudy",
+  sunny:".day",
+  clear:".day",
+  mist:".mist",
+  fog:".mist",
+  hail:".hail",
+  "partly cloudy": ".partly-cloudy-day",
+  raining: ".medium-rain",
+  showers: ".medium-rain",
+  lightning:".thunder",
+  thunderstorm:".thunder",
+  snow:".medium-snow"
 };
 
 
@@ -176,24 +205,26 @@ function getAnimation(weatherDesc){
   // GET RID OF THIS:
   $(".description").text(weatherDesc);
 
-  let newAnimation = [];
+  let newAnimation = "";
   // turn off previous animation;
-  for (let i = 0; i < currentAnimations.length; i++) {
-    console.log(currentAnimations[i]);
-    $(currentAnimations[i]).css("display", "none");
+  for (let i = 0; i < currentAnimation.length; i++) {
+    console.log(currentAnimation);
+    $(currentAnimation).css("display", "none");
   }
-
-  // check through each KEY in myList, if it matches something , append the VALUES into the newAnimation array
+  // check through each KEY in myList, if it matches something , append the VALUE into the newAnimation array
   if (weatherDescriptions.hasOwnProperty(weatherDesc)){
     console.log(weatherDesc+" "+weatherDescriptions[weatherDesc]);
     newAnimation = weatherDescriptions[weatherDesc];
-    currentAnimations = newAnimation;
+    currentAnimation = newAnimation; //set new animation state
     console.log("newAnimation: "+newAnimation);
+    $(newAnimation).css("display", "block"); // display weather animation found
   } else{
     // do nothing , new animation is an empty string, input weatherDesc did not match anything in myList
     //TODO ********************************************************************************************8
   }
 
+
+  /*
   if (newAnimation.length == 0){
 
     console.log("Weather Description is not in myList");
@@ -244,11 +275,10 @@ function getAnimation(weatherDesc){
       $(newAnimation[1]).css("display", "block"); //display lightning
       $(newAnimation[2]).css("display", "block"); //display rain
     }
-  }
+  }*/
 
 }
 
 $( document ).ready(function() {
-    //getWeatherData("urlLoc");
-
+    getWeatherData("urlLoc");
 });

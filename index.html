@@ -13,8 +13,7 @@
           <div class="header border">
               <div class="name">
 
-                <h1 class="location" id="location">Fairfax, Virginia</h1>
-                <h2 class="country">USA</h2>
+                <h1 class="location" id="location"></h1>
 
                 <div class="toggle-check-box">
                   <input type="checkbox" name="checkbox" id="location-toggle">
@@ -27,7 +26,7 @@
               </div>
 
               <form class="border" id="form">
-                <input class="border" type="text" id="search-text" value="" placeholder="Search location">
+                <input class="border" type="text" id="search-text" value="" placeholder="Search city">
                 <button type="submit" id="submit-btn">
                   <i class="fas fa-search btn"></i>
                 </button>
@@ -37,9 +36,8 @@
           <div class="weather-display border">
 
             <div class="desc-container">
-              <p class="description" id="description">Cloudy</p>
               <div class="animation-container">
-
+                <!---
                 <div class="cloud"> </div>
                 <ul class="sun"><li></li><li></li><li></li><li></li></ul>
                 <div class="mist">
@@ -57,9 +55,52 @@
                 <div class="lightning">
                   <div class="bolt" id="b1"></div>
                   <div class="bolt" id="b2"></div>
+                </div> -->
+
+                <!--- >svg testing  -->
+                <!--Day-->
+                <img class="weather-animation day" src="animations/day.svg" alt="day animation">
+                <!--Night-->
+                <img class="weather-animation night" src="animations/night.svg" alt="night animation">
+                <!--Cloudy-->
+                <img class="weather-animation cloudy" src="animations/cloudy.svg" alt="cloudy animation">
+                <!--Partly cloudy - Day -->
+                <img class="weather-animation partly-cloudy-day" src="animations/cloudy-day-2.svg" alt="partly cloudy in daytime animation">
+                <!--Partly cloudy with rain - Day-->
+                <img class="weather-animation partly-cloudy-rain-day" src="animations/rainy-3.svg" alt="partly cloudy with rain in daytime animation">
+                <!--Partly cloudy - Night -->
+                <img class="weather-animation partly-cloudy-night" src="animations/cloudy-night-3.svg" alt="partly cloudy in nighttime animation">
+                <!--Thunder-->
+                <img class="weather-animation thunder" src="animations/thunder.svg" alt="thunder animation">
+                <!--Hail-->
+                <img class="weather-animation hail" src="animations/rainy-7.svg" alt="hail animation">
+                <!--Light rain-->
+                <img class="weather-animation light-rain" src="animations/rainy-4.svg" alt="light rain animation">
+                <!--Medium rain-->
+                <img class="weather-animation medium-rain" src="animations/rainy-5.svg" alt="medium rain animation">
+                <!--Heavy rain-->
+                <img class="weather-animation heavy-rain" src="animations/rainy-6.svg" alt="heavy rain animation">
+                <!--Light snow - Day-->
+                <img class="weather-animation light-snow-day" src="animations/snowy-2.svg" alt="light snow in daytime animation">
+                <!--Medium snow - Day-->
+                <img class="weather-animation medium-snow-day" src="animations/snowy-3.svg" alt="medium snow in daytime animation">
+                <!--Light snow-->
+                <img class="weather-animation light-snow" src="animations/snowy-4.svg" alt="light snow animation">
+                <!--Medium snow-->
+                <img class="weather-animation medium-snow" src="animations/snowy-5.svg" alt="medium snow animation">
+                <!--Light snow-->
+                <img class="weather-animation heavy-snow" src="animations/snowy-6.svg" alt="heavy snow animation">
+                <!--Mist or Fog-->
+                <div class="mist">
+                  <div class="layer" id="l1"></div>
+                  <div class="layer" id="l2"></div>
+                  <div class="layer" id="l3"></div>
+                  <div class="layer" id="l4"></div>
                 </div>
 
               </div>
+              <p class="description" id="description">Cloudy</p>
+
             </div>
 
             <div class="info-container">
@@ -73,16 +114,18 @@
                 </label>
               </div> <!--units toggle -->
 
-              <h2 class="temperature" id="temperature">76°F</h2>
-              <p class="feelslike" id="feelslike">Feels like 67°F</p>
+              <h2 class="temperature" id="temperature"></h2>
+              <p class="feelslike" id="feelslike"></p>
+              <input type="hidden" name="latitude" class="latitude">
+              <input type="hidden" name="longitude" class="longitude">
 
               <div class="details-container">
-                <p class="details-label">Visibility</p>
+                <p class="details-label">Wind</p>
                 <p class="details-label">Humidity</p>
-                <p class="details-label">Precipitation</p>
-                <p class="detail visibility" id="visibility">10 mi</p>
-                <p class="detail humidity" id="humidity">67 %</p>
-                <p class="detail precipitation" id="precipitation">1 in</p>
+                <p class="details-label">Pressure</p>
+                <p class="detail windspeed" id="windspeed"></p>
+                <p class="detail humidity" id="humidity"></p>
+                <p class="detail pressure" id="Pressure"></p>
               </div>
             </div>
 
