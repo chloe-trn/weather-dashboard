@@ -33,7 +33,44 @@ body{
 .name{
   position: relative;
 }
-/*both toggles*/
+/*City Search Form*/
+#form{
+  background-color: #FFF8F0;
+  padding-right: 0px;
+  position: relative;
+}
+input[type=text] {
+  border: none;
+  height: 98px;
+  width: 100%;
+  padding-left: 20px;
+  font-family: inherit;
+  font-size: 27px;
+  background-color: #FFF8F0;
+  color:rgba(51, 72, 112, 0.7);
+}
+input[type=text]:focus {
+  outline:0;
+}
+#submit-btn{
+  position: absolute;
+  left:85%;
+  top:50%;
+  transform: translateY(-50%);
+  background-color:transparent;
+  padding: 0px;
+  border: none;
+  font-size: 30px;
+  color: rgba(51, 72, 112, 0.7);
+  z-index: 1;
+}
+#submit-btn:hover{
+  color: rgba(51, 72, 112, 1);
+}
+#submit-btn:focus{
+  outline:0;
+}
+/*BOTH TOGGLES*/
 .toggle-check-box{
   display: inline-block;
   position:relative;
@@ -74,7 +111,7 @@ label.translate-x{
 label.toggle-check-box{
     transition:all 0.3s ease;
 }
-/*Location toggle: */
+/*Location toggle*/
 .location-bgd{
   background-color: #686d7a;
 }
@@ -87,37 +124,7 @@ label.toggle-check-box{
 #location-toggle:checked + .toggle-bgd{
   background:#52AA8A;
 }
-#form{
-  background-color: #FFF8F0;
-  padding-right: 25px;
-}
-input[type=text] {
-  border: none;
-  height: 98px;
-  width: 400px;
-  padding-left: 20px;
-  font-family: inherit;
-  font-size: 27px;
-  background-color: #FFF8F0;
-  color:rgba(51, 72, 112, 0.7);
-}
-input[type=text]:focus {
-  outline:0;
-}
-#submit-btn{
-  background-color: #FFF8F0;
-  padding: 0px;
-  border: none;
-  font-size: 30px;
-  color: rgba(51, 72, 112, 0.7);
-}
-#submit-btn:hover{
-  color: rgba(51, 72, 112, 1);
-}
-#submit-btn:focus{
-  outline:0;
-}
-/*Units toggle: */
+/*Units toggle*/
 .label-text{
   margin-left: 10px;
   position: relative;
@@ -166,7 +173,7 @@ label #f{
   margin-bottom: 60px;
   font-size: 20px;
 }
-/*Inner details container*/
+/*Additional Details Grid Container*/
 .details-container{
   width: 100%;
   display: grid;
@@ -182,7 +189,7 @@ label #f{
   font-size: 30px;
   margin-bottom: 40px;
 }
-/*Description Container*/
+/*Weather Description Container*/
 .desc-container{
   position: relative;
   display:flex;
@@ -213,7 +220,7 @@ label #f{
 .rainy,.snowy{
   bottom: 275px;
 }
-/*MIST*/
+/*mist animation*/
 .mist{
   display:none;
   padding-top: 140px;
@@ -227,30 +234,31 @@ label #f{
   border-radius:40%;
 }
 #l1{
-  left: 60%;
+  left: 55%;
   transform:translateX(-50%);
   animation: mist-move 7s ease-in-out 0s infinite;
 }
 #l2{
-  left: 30%;
+  left: 25%;
   transform:translateX(-50%);
   animation: mist-move 10s linear infinite;
 }
 #l3{
-  left: 70%;
+  left: 65%;
   transform:translateX(-50%);
   animation: mist-move 8s ease-in-out infinite;
 }
 #l4{
-  left: 50%;
+  left: 45%;
   transform:translateX(-50%);
   animation: mist-move 6s linear infinite;
 }
-@keyframes mist-move{ /*Mist Animation*/
+@keyframes mist-move{
   0%{}
   50%{ transform:translate(-10px);}
   100%{}
 }
+/*Else case for no matching animations from API call*/
 .else-case{
   font-size: 25px;
   text-align: center;
@@ -260,7 +268,6 @@ label #f{
   transform:translateX(-50%);
   display: none;
 }
-
 /*Media Queries*/
 @media screen and (max-width: 1300px) {
     .temperature{
@@ -269,18 +276,15 @@ label #f{
     .feelslike{
       font-size: 18px;
     }
-    /*Inner details container*/
     .details-container .details-label{
       font-size: 18px;
     }
     .detail{
       font-size: 23px;
     }
-    /*Description Container*/
     .description{
       font-size: 35px;
     }
-    /*ANIMATIONS*/
     .weather-animation{
       bottom: 220px;
       transform:translateX(-50%) scale(5.5);
@@ -294,7 +298,6 @@ label #f{
     .rainy,.snowy,.thunder{
       bottom: 230px;
     }
-    /*MIST*/
     .mist{
       padding-top: 110px;
     }
@@ -322,18 +325,15 @@ label #f{
     .feelslike{
       font-size: 16px;
     }
-    /*Inner details container*/
     .details-container .details-label{
       font-size: 16px;
     }
     .detail{
       font-size: 16px;
     }
-    /*Description Container*/
     .description{
       font-size: 28px;
     }
-    /*ANIMATIONS*/
     .weather-animation{
       bottom: 200px;
       transform:translateX(-50%) scale(4.5);
@@ -348,7 +348,6 @@ label #f{
     .rainy,.snowy,.thunder{
       bottom: 220px;
     }
-    /*MIST*/
     .mist{
       padding-top: 110px;
     }
@@ -414,18 +413,15 @@ label #f{
     .feelslike{
       font-size: 18px;
     }
-    /*Inner details container*/
     .details-container .details-label{
       font-size: 18px;
     }
     .detail{
       font-size: 22px;
     }
-    /*Description Container*/
     .description{
       font-size: 30px;
     }
-    /*ANIMATIONS*/
     .weather-animation{
       bottom: 185px;
     }
@@ -438,7 +434,6 @@ label #f{
     .rainy,.snowy,.thunder{
       bottom: 190px;
     }
-    /*MIST*/
     .mist{
       padding-top: 95px;
     }
@@ -448,7 +443,6 @@ label #f{
       margin-bottom:25px;
     }
 }
-
 @media screen and (max-width: 480px) {
     .container{
       margin:0;
@@ -494,11 +488,9 @@ label #f{
     .detail{
       font-size: 15px;
     }
-    /*Description Container*/
     .description{
       font-size: 28px;
     }
-    /*ANIMATIONS*/
     .weather-animation{
       bottom: 170px;
       transform:translateX(-50%) scale(3.7);
@@ -510,7 +502,6 @@ label #f{
     .rainy,.snowy,.thunder{
       bottom: 180px;
     }
-    /*MIST*/
     .mist{
       padding-top: 85px;
     }
