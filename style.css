@@ -311,7 +311,6 @@ label #f{
     }
     input[type=text] {
       height: 80px;
-      width: 360px;
       font-size: 25px;
     }
     #submit-btn{
@@ -361,7 +360,6 @@ label #f{
     }
     input[type=text] {
       height: 70px;
-      width: 180px;
       font-size: 20px;
     }
     #submit-btn{
@@ -385,6 +383,7 @@ label #f{
     .name .location{
       margin: 20px 0;
       font-size: 26px;
+      text-align: center;
     }
     #form{
       margin-top: 20px;
@@ -392,7 +391,6 @@ label #f{
     }
     input[type=text] {
       height: 45px;
-      width: 90%;
       font-size: 19px;
     }
     #submit-btn{

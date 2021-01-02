@@ -205,9 +205,8 @@ $("input[id=units-toggle]").change(function() {
 // Search for and display animation
 function getAnimation(weatherDesc){
   let newAnimation = "";
-  // turn off previous animations
   for (let i = 0; i < currentAnimation.length; i++) {
-    $(currentAnimation).css("display", "none");
+    $(currentAnimation).css("display", "none"); // turn off previous animations
   }
   // check through each key in list, if it matches something, set newAnimation
   if (weatherDescriptions.hasOwnProperty(weatherDesc)){
