@@ -2,6 +2,8 @@
 <h2 align="center"><a  href="https://chloe-trn.github.io/weather-dashboard/"  target="_blank">Live Demo</a></h2>
 
 <p align="center"> A responsive weather application implemented using OpenWeatherMap API. The default city is Chicago. </p>
+![Weather Dashboard Screenshot.](/screenshot.PNG)
+
 
 ## Features 
 * User location toggle 
