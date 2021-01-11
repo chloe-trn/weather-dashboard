@@ -1,6 +1,20 @@
 <h1 align="center">Weather Dashboard</h1>
-A responsive weather dashboard implemented using OpenWeatherMap API. Showcases current weather description animation and details for a specified city. Has user location and metric units capabilities. 
 <h2 align="center"><a  href="https://chloe-trn.github.io/weather-dashboard/">Live Demo</a></h2>
 
+* A responsive weather application implemented using OpenWeatherMap API. The default city is Chicago. 
+
+## Features 
+* User location toggle 
+* Imperial and metric units toggle
+* Weather search by city 
+* Integrated animations
+
 ## Tools Used
+* [OpenWeatherMap API](https://openweathermap.org/)
+* [Geolocation Web API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+* [amCharts SVG weather animations](https://www.amcharts.com/free-animated-svg-weather-icons/) 
+* Javascript 
+* jQuery
+* CSS
+* HTML5
 
