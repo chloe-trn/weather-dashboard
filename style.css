@@ -109,7 +109,7 @@ label.translate-x{
   transition:all 0.3s ease;
 }
 label.toggle-check-box{
-    transition:all 0.3s ease;
+  transition:all 0.3s ease;
 }
 /*Location toggle*/
 .location-bgd{

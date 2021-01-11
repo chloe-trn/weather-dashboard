@@ -54,17 +54,17 @@ function checkUrl(url){
   if(url == "urlLoc"){
     let location = searchLocation.loc;
     if(units.temp == "c"){
-      return `http://api.openweathermap.org/data/2.5/find?q=${location}&appid=${APP_ID}&units=metric`;
+      return `https://api.openweathermap.org/data/2.5/find?q=${location}&appid=${APP_ID}&units=metric`;
     }else{ //F
-      return `http://api.openweathermap.org/data/2.5/find?q=${location}&appid=${APP_ID}&units=imperial`;
+      return `https://api.openweathermap.org/data/2.5/find?q=${location}&appid=${APP_ID}&units=imperial`;
     }
   } else{ // "urlCoords"
     let lat = $(".latitude").val();
     let long = $(".longitude").val();
     if(units.temp == "c"){
-      return `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${APP_ID}&units=metric`;
+      return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${APP_ID}&units=metric`;
     }else{ //F
-      return `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${APP_ID}&units=imperial`;
+      return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${APP_ID}&units=imperial`;
     }
   };
 }
@@ -79,7 +79,7 @@ function setWeatherDisplay(inputUrl,newLocObj){
     $(".humidity").text(searchLocation.humid+" %");
     $(".pressure").text(searchLocation.pres+" inHg");
     $(".windspeed").text(searchLocation.wind+" "+units.wind);
-    $(".w-icon").attr("src", "http://openweathermap.org/img/w/" + searchLocation.icon + ".png");
+    $(".w-icon").attr("src", "https://openweathermap.org/img/w/" + searchLocation.icon + ".png");
   }else{// "urlCoords"
     userLocation = newLocObj;
     $(".location").text(userLocation.loc+", "+userLocation.coun);
@@ -89,7 +89,7 @@ function setWeatherDisplay(inputUrl,newLocObj){
     $(".humidity").text(userLocation.humid+" %");
     $(".pressure").text(userLocation.pres+" inHg");
     $(".windspeed").text(userLocation.wind+" "+units.wind);
-    $(".w-icon").attr("src", "http://openweathermap.org/img/w/" + userLocation.icon + ".png");
+    $(".w-icon").attr("src", "https://openweathermap.org/img/w/" + userLocation.icon + ".png");
   }
 }
 // Fetch from weather data OpenWeather API based on either location or coordinates
@@ -97,7 +97,6 @@ async function getWeatherData(url) {
     let myUrl = checkUrl(url);            // check what type of data we are pulling from API
     const response = await fetch(myUrl);  // fetch it
     const data = await response.json();   // make it json
-    console.log(data);
     // pulling data process is different depending on the query type urlLoc or urlCoords:
     if(url == "urlLoc"){  // user enters location:
       if (data.count <= 0 ){             // user entered invalid city
