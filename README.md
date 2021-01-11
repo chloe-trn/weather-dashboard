@@ -1,10 +1,8 @@
 <h1 align="center">Weather Dashboard</h1>
 <h2 align="center"><a  href="https://chloe-trn.github.io/weather-dashboard/"  target="_blank">Live Demo</a></h2>
 
-<p align="center"> A responsive weather application implemented using OpenWeatherMap API. The default city is Chicago. </p>
-<img align="center" src="https://imgur.com/j3YAz8n" alt="Weather Dashboard screenshot">
-
-
+<p align="center"> A **responsive weather application** implemented using OpenWeatherMap API. The default city is Chicago. </p>
+![Weather dashboard screenshot](/screenshot.png)
 ## Features 
 * User location toggle 
 * Imperial and metric units toggle
