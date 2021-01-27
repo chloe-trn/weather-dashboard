@@ -18,4 +18,7 @@
 * CSS
 * HTML5
 
+## Future Work 
+* Implement 7 day forecast 
+
 
