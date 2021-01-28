@@ -3,42 +3,37 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
+        <link rel="icon" href="favicon.png">
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://kit.fontawesome.com/fd1c611bcf.js" crossorigin="anonymous"></script>
         <title>Weather App</title>
       </head>
       <body>
         <div class="container border">
-          <div class="header border">
+          <div class="header border">     
               <div class="name">
-
-                <h1 class="location" id="location"></h1>
-
+                <h1 class="location" id="location"></h1>  
                 <div class="loc-toggle-container">
-                <div class="toggle-check-box">
-                  <input type="checkbox" name="checkbox" id="location-toggle">
-                  <div class="toggle-bgd location-bgd border"></div>
-                  <label class="toggle-check-box loc-toggle" for="location-toggle" name="location-toggle">
-                    <p class="arrow-icon" id="f"><i class="fas fa-location-arrow"></i></p>
+                  <label class="location-toggle" for="location-toggle">
+                    <input class="location-input" type="checkbox" id="location-toggle"/>
+                    <div class="location-fill"></div>
+                    <i class="fas fa-location-arrow arrow-icon"></i>
                   </label>
-                </div> <!--user location toggle -->
-              </div>
-
-              </div>
-
+                </div>
+              </div><!--user location toggle -->
               <form class="border" id="form">
                 <input class="border" type="text" id="search-text" value="" placeholder="Search city">
                 <button type="submit" id="submit-btn">
-                  <i class="fas fa-search btn"></i>
+                  <i class="fas fa-search btn search-btn"></i>
                 </button>
               </form> <!--location form-->
           </div> <!--controls container -->
           <div class="weather-display border">
-
             <div class="desc-container">
               <div class="animation-container">
                 <!--day 01d-->
                 <img class="weather-animation day" src="animations/day.svg" alt="day animation">
+                
                 <!--night ;01n-->
                 <img class="weather-animation night" src="animations/night.svg" alt="night animation">
                 <!--cloudy-day-3 ;02d-->
@@ -68,25 +63,20 @@
 
               </div>
               <p class="description" id="description">Cloudy</p>
-
-            </div>
-
-            <div class="info-container">
-
-              <div class="toggle-check-box" id="toggle-box-unit">
-                <input type="checkbox" name="checkbox" id="units-toggle">
-                <div class="toggle-bgd units-bgd border"></div>
-                <label class="toggle-check-box" for="units-toggle" name="units-toggle">
-                  <p class="label-text" id="f">F°</p>
-                  <p class="label-text" id="c">C°</p>
-                </label>
-              </div> <!--units toggle -->
-
+            </div> <!-- weather description container -->
+            <div class="info-container">       
+              <label class="units-toggle" for="units-toggle">
+                <input class="units-input" type="checkbox" id="units-toggle"/>
+                <div class="units-fill"></div>
+                <p class="label-text farenheit" id="f">F°</p>
+                <p class="label-text celsius" id="c">C°</p>
+              </label><!--units toggle -->
+              <!-- main weather info -->
               <h2 class="temperature" id="temperature"></h2>
               <p class="feelslike" id="feelslike"></p>
               <input type="hidden" name="latitude" class="latitude">
               <input type="hidden" name="longitude" class="longitude">
-
+              <!-- weather details -->
               <div class="details-container">
                 <p class="details-label">Wind</p>
                 <p class="details-label">Pressure</p>
@@ -94,13 +84,12 @@
                 <p class="detail windspeed" id="windspeed"></p>
                 <p class="detail pressure" id="pressure"></p>
                 <p class="detail humidity" id="humidity"></p>
-
-              </div>
+              </div>  
             </div>
-
           </div> <!-- weather display container -->
         </div><!-- outer container -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--jQuery import -->
-      <script src="scripts.js"></script> <!--JS import -->
+      <script type='text/javascript' src='config.js'></script>
+      <script type='text/javascript' src="scripts.js"></script> <!--JS import -->
     </body>
 </html>

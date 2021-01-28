@@ -9,10 +9,15 @@ body{
   font-weight: lighter;
   background-color: #FFF8F0;
   color:#334870;
+  height: 100vh;
+  position: relative;
 }
 .container{
+  position: relative;
+  top: 50%; 
+  transform: translateY(-50%);
   background-color: #8db8b1;
-  margin: 30px 10vw;
+  margin: 0 10vw;
   padding-bottom: 20px;
 }
 .border{
@@ -33,7 +38,7 @@ body{
 .name{
   position: relative;
 }
-/*City Search Form*/
+/* City Search Form */
 #form{
   background-color: #FFF8F0;
   padding-right: 0px;
@@ -63,6 +68,7 @@ input[type=text]:focus {
   font-size: 30px;
   color: rgba(51, 72, 112, 0.7);
   z-index: 1;
+  cursor: pointer
 }
 #submit-btn:hover{
   color: rgba(51, 72, 112, 1);
@@ -70,27 +76,30 @@ input[type=text]:focus {
 #submit-btn:focus{
   outline:0;
 }
-/*BOTH TOGGLES*/
-.toggle-check-box{
-  display: inline-block;
-  position:relative;
+/* Location toggle */
+.location-toggle{ 
   width: 80px;
   height: 30px;
-}
-.toggle-check-box input{
-  display:none;
-}
-label{
+  border-radius: 30px;
+  display: inline-block;
+  cursor: pointer; 
   position: relative;
 }
-.toggle-bgd{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.location-input{
+  display:none;
 }
-.toggle-bgd:after{
+.location-fill{
+  background: #686d7a;
+  position: relative;
+  width: 80px; 
+  height: 30px; 
+  border-radius: 30px;
+  transition: background 0.2s; 
+}
+.location-input:checked ~ .location-fill{
+  background: #52AA8A;
+}
+.location-fill::after{
   position:absolute;
   content: "";
   width: 38px;
@@ -99,52 +108,72 @@ label{
   background-color: #FFF8F0;
   top: 4px;
   left: 4px;
-  transition:all 0.3s ease;
+  transition: all 0.3s ease;
 }
-input:checked + .toggle-bgd:after{
+.location-input:checked ~ .location-fill::after{
   transform: translateX(35px);
 }
-label.translate-x{
+.location-input:checked ~ .arrow-icon{
   transform: translateX(35px);
-  transition:all 0.3s ease;
-}
-label.toggle-check-box{
-  transition:all 0.3s ease;
-}
-/*Location toggle*/
-.location-bgd{
-  background-color: #686d7a;
 }
 .arrow-icon{
-  position: relative;
-  margin-left: 11px;
-  top:8px;
   font-size: 13px;
+  position: absolute;
+  top: 9px;
+  left: 15px;
+  transition: all 0.3s ease;
 }
-#location-toggle:checked + .toggle-bgd{
-  background:#52AA8A;
+/* Units toggle */
+.units-toggle{ 
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  display: inline-block;
+  cursor: pointer; 
+  position: absolute;
+  margin-top: 30px;
+  right: 30px;
 }
-/*Units toggle*/
-.label-text{
-  margin-left: 10px;
+.units-input{
+  display:none;
+}
+.units-fill{
+  background: #f5bfbf;
   position: relative;
+  width: 80px; 
+  height: 30px; 
+  border-radius: 30px;
+  transition: background 0.2s; 
+}
+.units-input:checked ~ .units-fill{
+  background: #c7b9fa;
+}
+.units-fill::after{
+  position:absolute;
+  content: "";
+  width: 38px;
+  height: 22px;
+  border-radius:30px;
+  background-color: #FFF8F0;
+  top: 4px;
+  left: 4px;
+  transition: all 0.3s ease;
+}
+.units-input:checked ~ .units-fill::after{
+  transform: translateX(35px);
+}
+.label-text{
+  position: absolute;
   top:6px;
   font-weight: bold;
+  font-size: 0.9em;
   color: rgba(51, 72, 112, 0.7);
 }
-label #c{
-  position:absolute;
-  left: 45px;
+.farenheit{
+  left: 16px;
 }
-label #f{
-  position:absolute;
-  left: 4px;
-}
-.units-bgd{
-  background:#f5bfbf;
-}
-#units-toggle:checked + .toggle-bgd{
-  background:#c7b9fa;
+.celsius{
+  left: 51px;
 }
 /*WEATHER DISPLAY*/
 .weather-display{
@@ -341,7 +370,6 @@ label #f{
       bottom: 175px;
     }
     .day,.night{
-      left:40%;
       transform:scale(7);
     }
     .rainy,.snowy,.thunder{
@@ -372,6 +400,8 @@ label #f{
 @media screen and (max-width: 770px) {
     .container{
       margin: 10px 5vw;
+      top: 0;
+      transform: translateY(0);
     }
     .header{
       display:flex;

@@ -121,7 +121,6 @@ async function getWeatherData(url) {
       }
       if($("#location-toggle").is(":checked") && validSearch == 0){ // if location is toggled and the search IS valid
         $("#location-toggle").prop( "checked", false );  // un-toggle location toggle
-        $("label.loc-toggle").removeClass("translate-x");
       }
       prevValidLocation = data.list[0].name;  // set valid search as previous location for use if next searches are not valid
     }else{ // urlCoords, user toggles location:
@@ -155,6 +154,10 @@ $("#form").submit(function(){
 // Geolocation functions to fetch user coordinates
 if (!navigator.geolocation){
     alert("Geolocation not available on your browser. Please exit alert or enable geolocation in your browser settings.");
+    // un-toggle location toggle
+    if($("#location-toggle").is(":checked")){ 
+      $("#location-toggle").prop( "checked", false );  
+    }
 }
 function success(pos){
     $(".latitude").val(pos.coords.latitude);
@@ -170,17 +173,15 @@ async function getUserLocation(){
 // Listen for change in toggle for location
 $("input[id=location-toggle]").change(function() {
   if ($(this).is(':checked')) { // if toggled
-    $("#search-text").val("");                      // clear search field
-    $("label.loc-toggle").addClass("translate-x");  // move toggle to right
-    if ($(".latitude").val() == ""){                // if this is the first time location is toggled
-      getUserLocation();                            // use Geolocation to get user coordinates
+    $("#search-text").val("");                  // clear search field
+    if ($(".latitude").val() == ""){            // if this is the first time location is toggled
+      getUserLocation();                        // use Geolocation to get user coordinates
     }else{  // not the first time location is toggled
-      getWeatherData("urlCoords");                  // fetch data based on coordinates and display on DOM
+      getWeatherData("urlCoords");              // fetch data based on coordinates and display on DOM
     }
   } else { // if not toggled
-    getWeatherData("urlLoc");                      // switch weather display back to previous search
-    $("#search-text").val("");                     // clear search field
-    $("label.loc-toggle").removeClass("translate-x");  // move toggle to left
+    getWeatherData("urlLoc");                   // switch weather display back to previous search
+    $("#search-text").val("");                  // clear search field
   }
 });
 // listen for change in toggle for units
