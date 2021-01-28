@@ -20,5 +20,6 @@
 
 ## Future Work 
 * Implement 7 day forecast 
+* Fix blurry svg animations on mobile 
 
 
