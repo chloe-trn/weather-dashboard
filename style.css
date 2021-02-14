@@ -252,7 +252,7 @@ input[type=text]:focus {
 }
 .day,.night{
   left:45%;
-  transform:scale(9.5);
+  transform:scale(8.3);
 }
 .rainy,.snowy{
   bottom: 275px;
@@ -330,7 +330,7 @@ input[type=text]:focus {
       bottom: 220px;
     }
     .day,.night{
-      transform:scale(8.5);
+      transform:scale(6.5);
     }
     .rainy,.snowy,.thunder{
       bottom: 230px;
@@ -378,7 +378,7 @@ input[type=text]:focus {
       bottom: 175px;
     }
     .day,.night{
-      transform:scale(7);
+      transform:scale(6.3);
     }
     .rainy,.snowy,.thunder{
       bottom: 220px;
