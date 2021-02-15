@@ -13,11 +13,8 @@ body{
   position: relative;
 }
 .container{
-  position: relative;
-  top: 50%; 
-  transform: translateY(-50%);
   background-color: #8db8b1;
-  margin: 0 10vw;
+  margin: 5vh 10vw;
   padding-bottom: 20px;
 }
 .border{
@@ -307,6 +304,9 @@ input[type=text]:focus {
 }
 /*Media Queries*/
 @media screen and (max-width: 1300px) {
+    .container{
+      margin: 10vh 10vw;
+    }
     .temperature{
       font-size: 80px;
     }
@@ -355,6 +355,9 @@ input[type=text]:focus {
     }
 }
 @media screen and (max-width: 990px) {
+    .container{
+      margin: 12vh 10vw;
+    }
     .temperature{
       font-size: 72px;
     }
@@ -408,8 +411,6 @@ input[type=text]:focus {
 @media screen and (max-width: 770px) {
     .container{
       margin: 10px 5vw;
-      top: 0;
-      transform: translateY(0);
     }
     .header{
       display:flex;
