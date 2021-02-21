@@ -14,6 +14,7 @@
   - [Units Toggle](#units-toggle)
   - [Weather Search By City](#weather-search-by-city)
   - [Integrated Animations](#integrated-animations)
+  - [Responsiveness](#responsiveness)
 - [Future Work](#future-work)
 
 ## Tools Used
@@ -51,6 +52,10 @@
 </p>
 
 * Animations are mapped for all weather descriptions provided by OpenWeatherMap API. The full range of weather animations are provided from <a href="https://www.amcharts.com/free-animated-svg-weather-icons/" target="_blank">amCharts SVG weather animations.</a> The mist animation is custom made with CSS keyframes animation. 
+
+### Responsiveness
+![Responsive Design](./read-me-imgs/mobile.png)
+* The layout of the dashboard transitions to column format at the 770px breakpoint. This is done through the use of CSS flex-direction propertiy in a media query. Font sizes also scale down accordingly. 
 
 ## Future Work 
 * Implement 7 day forecast 
