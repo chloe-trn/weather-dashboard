@@ -41,7 +41,7 @@
 * For the current location, the weather details can be toggled between imperial (farenheit) and metric (celsius) units. Each toggle calls the OpenWeatherMap API again to get the information in the units desired. 
 ### Weather Search By City 
 ![City Search](./read-me-imgs/search.png)
-![City Search Result](./read-me-imgs/seoul-search.png)
+![City Search Result](./read-me-imgs/location-search.png)
 * Inputting a city will display the resulting current weather information for that city on the dashboard.
 * An invalid search will result in a browser alert popping up. 
 
