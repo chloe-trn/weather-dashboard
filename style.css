@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@font-face {
+  font-family: 'Varela Round';
+  src: local('Varela Round'), url('assets/VarelaRound-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+}
 *{
   padding: 0;
   margin: 0;
@@ -659,12 +664,12 @@ input[type=text]:focus {
       grid-template-rows: 1.75fr 2fr;
     }
     .weather-display > *:nth-child(1){
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
     }
     .weather-display > *:nth-child(2){
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
+      -ms-grid-row: 2;
+      -ms-grid-column: 1;
     }
     .temperature{
       margin-top: 100px;
