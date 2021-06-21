@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
-        <link rel="icon" href="favicon.png">
+        <link rel="icon" href="assets/favicon.png">
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://kit.fontawesome.com/fd1c611bcf.js" crossorigin="anonymous"></script>
         <title>Weather Dashboard | Search For Weather By City</title>
@@ -32,24 +32,135 @@
             <div class="desc-container">
               <div class="animation-container">
                 <!--day 01d-->
-                <img class="weather-animation day" src="animations/day.svg" alt="day animation">
+                <img class="weather-animation day" src="assets/animations/day.svg" alt="day animation">
                 
                 <!--night ;01n-->
-                <img class="weather-animation night" src="animations/night.svg" alt="night animation">
+                <img class="weather-animation night" src="assets/animations/night.svg" alt="night animation">
                 <!--cloudy-day-3 ;02d-->
-                <img class="weather-animation cloudy-day" src="animations/cloudy-day-3.svg" alt="cloudy day animation">
+                <img class="weather-animation cloudy-day" src="assets/animations/cloudy-day-3.svg" alt="cloudy day animation">
                 <!--cloudy-night-3 ;02n-->
-                <img class="weather-animation cloudy-night" src="animations/cloudy-night-3.svg" alt="cloudy night animation">
-                <!--cloudy ;03d;03n;04d;04n-->
-                <img class="weather-animation cloudy" src="animations/cloudy.svg" alt="cloudy animation">
+                <img class="weather-animation cloudy-night" src="assets/animations/cloudy-night-3.svg" alt="cloudy night animation">
+                <!--cloudy ;03d;03n;04d;04n
+                <img class="weather-animation cloudy" src="assets/animations/cloudy.svg" alt="cloudy animation">-->
+                <svg
+                  class="weather-animation cloudy"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="64"
+                  height="64"
+                  viewbox="0 0 64 64">
+                <defs>
+                <filter id="blur" width="200%" height="200%">
+                  <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                  <feOffset dx="0" dy="4" result="offsetblur"/>
+                  <feComponentTransfer>
+                      <feFuncA type="linear" slope="0.05"/>
+                  </feComponentTransfer>
+                  <feMerge> 
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/> 
+                  </feMerge>
+                </filter>
+                <style type="text/css"><![CDATA[
+                /*
+                ** CLOUDS
+                */
+                @keyframes am-weather-cloud-1 {
+                  0% {
+                    -webkit-transform: translate(-5px,0px);
+                      -moz-transform: translate(-5px,0px);
+                        -ms-transform: translate(-5px,0px);
+                            transform: translate(-5px,0px);
+                  }
+
+                  50% {
+                    -webkit-transform: translate(10px,0px);
+                      -moz-transform: translate(10px,0px);
+                        -ms-transform: translate(10px,0px);
+                            transform: translate(10px,0px);
+                  }
+
+                  100% {
+                    -webkit-transform: translate(-5px,0px);
+                      -moz-transform: translate(-5px,0px);
+                        -ms-transform: translate(-5px,0px);
+                            transform: translate(-5px,0px);
+                  }
+                }
+
+                .am-weather-cloud-1 {
+                  -webkit-animation-name: am-weather-cloud-1;
+                    -moz-animation-name: am-weather-cloud-1;
+                          animation-name: am-weather-cloud-1;
+                  -webkit-animation-duration: 7s;
+                    -moz-animation-duration: 7s;
+                          animation-duration: 7s;
+                  -webkit-animation-timing-function: linear;
+                    -moz-animation-timing-function: linear;
+                          animation-timing-function: linear;
+                  -webkit-animation-iteration-count: infinite;
+                    -moz-animation-iteration-count: infinite;
+                          animation-iteration-count: infinite;
+                }
+
+                @keyframes am-weather-cloud-2 {
+                  0% {
+                    -webkit-transform: translate(0px,0px);
+                      -moz-transform: translate(0px,0px);
+                        -ms-transform: translate(0px,0px);
+                            transform: translate(0px,0px);
+                  }
+
+                  50% {
+                    -webkit-transform: translate(2px,0px);
+                      -moz-transform: translate(2px,0px);
+                        -ms-transform: translate(2px,0px);
+                            transform: translate(2px,0px);
+                  }
+
+                  100% {
+                    -webkit-transform: translate(0px,0px);
+                      -moz-transform: translate(0px,0px);
+                        -ms-transform: translate(0px,0px);
+                            transform: translate(0px,0px);
+                  }
+                }
+
+                .am-weather-cloud-2 {
+                  -webkit-animation-name: am-weather-cloud-2;
+                    -moz-animation-name: am-weather-cloud-2;
+                          animation-name: am-weather-cloud-2;
+                  -webkit-animation-duration: 3s;
+                    -moz-animation-duration: 3s;
+                          animation-duration: 3s;
+                  -webkit-animation-timing-function: linear;
+                    -moz-animation-timing-function: linear;
+                          animation-timing-function: linear;
+                  -webkit-animation-iteration-count: infinite;
+                    -moz-animation-iteration-count: infinite;
+                          animation-iteration-count: infinite;
+                }]]></style>
+                    </defs>
+                    <g filter="url(#blur)" id="cloudy">
+                        <g transform="translate(20,10)">
+                            <g class="am-weather-cloud-1">
+                                <path d="M47.7,35.4     c0-4.6-3.7-8.2-8.2-8.2c-1,0-1.9,0.2-2.8,0.5c-0.3-3.4-3.1-6.2-6.6-6.2c-3.7,0-6.7,3-6.7,6.7c0,0.8,0.2,1.6,0.4,2.3     c-0.3-0.1-0.7-0.1-1-0.1c-3.7,0-6.7,3-6.7,6.7c0,3.6,2.9,6.6,6.5,6.7l17.2,0C44.2,43.3,47.7,39.8,47.7,35.4z" fill="#91C0F8" stroke="white" stroke-linejoin="round" stroke-width="1.2" transform="translate(-10,-8), scale(0.6)"/>
+                            </g>
+                            <g class="am-weather-cloud-2">
+                                <path d="M47.7,35.4     c0-4.6-3.7-8.2-8.2-8.2c-1,0-1.9,0.2-2.8,0.5c-0.3-3.4-3.1-6.2-6.6-6.2c-3.7,0-6.7,3-6.7,6.7c0,0.8,0.2,1.6,0.4,2.3     c-0.3-0.1-0.7-0.1-1-0.1c-3.7,0-6.7,3-6.7,6.7c0,3.6,2.9,6.6,6.5,6.7l17.2,0C44.2,43.3,47.7,39.8,47.7,35.4z" fill="#57A0EE" stroke="white" stroke-linejoin="round" stroke-width="1.2" transform="translate(-20,-11)"/>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
                 <!--rainy-6 ;09d;09n;10n-->
-                <img class="weather-animation rainy" src="animations/rainy-6.svg" alt="rainy animation">
+                <img class="weather-animation rainy" src="assets/animations/rainy-6.svg" alt="rainy animation">
                 <!--rainy-3 ;10d-->
-                <img class="weather-animation rainy-day" src="animations/rainy-3.svg" alt="rainy in daytime animation">
+                <img class="weather-animation rainy-day" src="assets/animations/rainy-3.svg" alt="rainy in daytime animation">
                 <!--thunder ;11d;11n-->
-                <img class="weather-animation thunder" src="animations/thunder.svg" alt="thunder animation">
+                <img class="weather-animation thunder" src="assets/animations/thunder.svg" alt="thunder animation">
                 <!--snowy-5 ;13d;13n-->
-                <img class="weather-animation snow" src="animations/snowy-5.svg" alt="snow animation">
+                <img class="weather-animation snow" src="assets/animations/snowy-5.svg" alt="snow animation">
                 <!--Mist or Fog-->
                 <div class="mist">
                   <div class="layer" id="l1"></div>
